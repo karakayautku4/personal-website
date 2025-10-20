@@ -163,9 +163,15 @@ body {
   text-justify: inter-word;
 }
 
-
 /* Links */
 a:hover { color: var(--brand); }
 
 /* Accessibility */
 :focus-visible { outline: 2px dashed #58a6ff; outline-offset: 4px; }
+
+/* Fix text spacing in cards (like TryHackMe & HackerRank sections) */
+.proj p {
+  text-align: left;
+  text-justify: auto;
+  line-height: 1.5;
+}
