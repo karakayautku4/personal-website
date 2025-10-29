@@ -4,10 +4,8 @@
 User-agent: *
 Allow: /
 
-# Disallow internal or non-public files
+# Disallow internal files
 Disallow: /Utku-Karakaya-CV.pdf
-Disallow: /assets/
-Disallow: /scripts/
 
 # Sitemap helps search engines find all your pages
 Sitemap: https://karakayautku4.github.io/sitemap.xml
