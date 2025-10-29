@@ -122,43 +122,113 @@ class Sidebar {
     // Add body class
     document.body.classList.add('with-secondary-sidebar');
     
-    // Create secondary sidebar
+    // Store secondary menu data
+    this.secondaryMenuData = this.getSecondaryMenuData(pageType);
+    
+    // Create secondary sidebar for desktop
     const secondarySidebar = document.createElement('aside');
     secondarySidebar.className = 'secondary-sidebar active';
-    
-    if (pageType === 'workspace') {
-      secondarySidebar.innerHTML = `
-        <h3>Workspace Items</h3>
-        <nav class="secondary-sidebar-nav">
-          <a href="#coming-soon">Coming soon...</a>
-        </nav>
-      `;
-    } else if (pageType === 'projects') {
-      secondarySidebar.innerHTML = `
-        <h3>Projects</h3>
-        <nav class="secondary-sidebar-nav">
-          <a href="pythonleague.html">PythonLeague</a>
-          <a href="#coming-soon">Coming soon...</a>
-        </nav>
-        
-        <h3>Notes</h3>
-        <nav class="secondary-sidebar-nav">
-          <a href="#coming-soon">Coming soon...</a>
-        </nav>
-        
-        <h3>Practice</h3>
-        <nav class="secondary-sidebar-nav">
-          <a href="#coming-soon">Coming soon...</a>
-        </nav>
-        
-        <h3>Tools</h3>
-        <nav class="secondary-sidebar-nav">
-          <a href="#coming-soon">Coming soon...</a>
-        </nav>
-      `;
-    }
-    
+    secondarySidebar.innerHTML = this.generateSecondaryMenu(pageType);
     document.body.appendChild(secondarySidebar);
+    
+    // Add secondary menu to main sidebar for mobile
+    this.addSecondaryMenuToMainSidebar(pageType);
+  }
+  
+  getSecondaryMenuData(pageType) {
+    if (pageType === 'workspace') {
+      return {
+        title: 'Workspace',
+        sections: [
+          {
+            heading: 'Workspace Items',
+            links: [
+              { href: '#coming-soon', label: 'Coming soon...' }
+            ]
+          }
+        ]
+      };
+    } else if (pageType === 'projects') {
+      return {
+        title: 'Projects',
+        sections: [
+          {
+            heading: 'Projects',
+            links: [
+              { href: 'pythonleague.html', label: 'PythonLeague' },
+              { href: '#coming-soon', label: 'Coming soon...' }
+            ]
+          },
+          {
+            heading: 'Notes',
+            links: [
+              { href: '#coming-soon', label: 'Coming soon...' }
+            ]
+          },
+          {
+            heading: 'Practice',
+            links: [
+              { href: '#coming-soon', label: 'Coming soon...' }
+            ]
+          },
+          {
+            heading: 'Tools',
+            links: [
+              { href: '#coming-soon', label: 'Coming soon...' }
+            ]
+          }
+        ]
+      };
+    }
+    return null;
+  }
+  
+  generateSecondaryMenu(pageType) {
+    const data = this.getSecondaryMenuData(pageType);
+    if (!data) return '';
+    
+    return data.sections.map(section => `
+      <h3>${section.heading}</h3>
+      <nav class="secondary-sidebar-nav">
+        ${section.links.map(link => `
+          <a href="${link.href}">${link.label}</a>
+        `).join('')}
+      </nav>
+    `).join('');
+  }
+  
+  addSecondaryMenuToMainSidebar(pageType) {
+    const data = this.getSecondaryMenuData(pageType);
+    if (!data) return;
+    
+    const nav = document.querySelector('.site-header .nav');
+    if (!nav) return;
+    
+    // Create mobile-only secondary menu section
+    const mobileSecondaryMenu = document.createElement('div');
+    mobileSecondaryMenu.className = 'mobile-secondary-menu';
+    
+    mobileSecondaryMenu.innerHTML = `
+      <h3 class="sidebar-title">${data.title}</h3>
+      ${data.sections.map(section => `
+        <div class="mobile-secondary-section">
+          <p class="mobile-secondary-heading">${section.heading}</p>
+          <div class="mobile-secondary-links">
+            ${section.links.map(link => `
+              <a href="${link.href}">${link.label}</a>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+    `;
+    
+    // Insert before social links
+    const firstSidebarTitle = nav.querySelector('.sidebar-title');
+    if (firstSidebarTitle) {
+      nav.insertBefore(mobileSecondaryMenu, firstSidebarTitle);
+    } else {
+      nav.appendChild(mobileSecondaryMenu);
+    }
   }
 }
 
