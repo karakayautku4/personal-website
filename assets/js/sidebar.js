@@ -145,9 +145,9 @@ class Sidebar {
         title: 'Workspace',
         sections: [
           {
-            heading: 'Workspace Items',
+            heading: 'Hardware',
             links: [
-              { href: '#coming-soon', label: 'Coming soon...' }
+              { href: 'https://www.apple.com/macbook-air/', label: 'Apple MacBook Air', external: true }
             ]
           }
         ]
@@ -195,7 +195,7 @@ class Sidebar {
       <h3>${section.heading}</h3>
       <nav class="secondary-sidebar-nav">
         ${section.links.map(link => `
-          <a href="${link.href}">${link.label}</a>
+          <a href="${link.href}"${link.external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${link.label}</a>
         `).join('')}
       </nav>
     `).join('');
@@ -219,7 +219,7 @@ class Sidebar {
           <p class="mobile-secondary-heading">${section.heading}</p>
           <div class="mobile-secondary-links">
             ${section.links.map(link => `
-              <a href="${link.href}">${link.label}</a>
+              <a href="${link.href}"${link.external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${link.label}</a>
             `).join('')}
           </div>
         </div>

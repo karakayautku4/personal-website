@@ -700,23 +700,42 @@
 /* Workspace Grid */
 .workspace-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
   margin-top: var(--spacing-xl);
 }
 
 .workspace-item {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
   transition: border var(--transition-normal), background var(--transition-normal), transform var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.workspace-item h3 {
+  font-size: 0.875rem;
+  margin: 0 0 4px 0;
+  color: var(--text);
+  transition: color var(--transition-fast);
+}
+
+.workspace-item .text-muted {
+  font-size: 0.75rem;
+  margin: 0;
 }
 
 .workspace-item:hover {
   border-color: var(--brand);
   background: var(--bg-secondary);
   transform: translateY(-2px);
+}
+
+.workspace-item:hover h3 {
+  color: var(--brand);
 }
 
 /* Coming Soon Card */
