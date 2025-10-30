@@ -15,9 +15,11 @@ class Sidebar {
       github: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>',
       tryhackme: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M9 12l2 2 4-4"></path>',
       hackerrank: '<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>',
+      roadmap: '<line x1="12" y1="2" x2="12" y2="22"></line><rect x="4" y="5" width="7" height="4" rx="1"></rect><rect x="13" y="9" width="7" height="4" rx="1"></rect><rect x="4" y="15" width="7" height="4" rx="1"></rect>',
       linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>',
       x: '<path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>',
       instagram: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>',
+      reddit: '<path d="M19.5,3.462c0.8,0,1.45,0.65,1.45,1.45s-0.65,1.45-1.45,1.45s-1.45-0.65-1.45-1.45S18.7,3.462,19.5,3.462z M21.6,10.2c0-1.326-1.074-2.4-2.4-2.4c-0.647,0-1.234,0.257-1.666,0.671c-1.449-0.785-3.282-1.289-5.291-1.364L13.8,3l3,0.6c0,0.993,0.806,1.8,1.8,1.8s1.8-0.806,1.8-1.8s-0.806-1.8-1.8-1.8c-0.719,0-1.338,0.422-1.626,1.03L13.8,1.8c-0.134-0.028-0.272,0.006-0.378,0.091s-0.175,0.209-0.188,0.347L12.3,6.807c-2.024,0.075-3.863,0.579-5.311,1.364C6.557,7.757,5.97,7.5,5.323,7.5c-1.326,0-2.4,1.074-2.4,2.4c0,0.883,0.478,1.651,1.189,2.07c-0.005,0.179-0.009,0.359-0.009,0.54c0,3.385,3.761,6.121,8.4,6.121s8.4-2.736,8.4-6.121c0-0.181-0.005-0.36-0.011-0.538C21.122,11.851,21.6,11.083,21.6,10.2z M6.6,13.8c0-0.662,0.538-1.2,1.2-1.2s1.2,0.538,1.2,1.2s-0.538,1.2-1.2,1.2S6.6,14.462,6.6,13.8z M17.4,17.4c-0.993,0.993-3,1.8-4.2,1.8s-3.207-0.806-4.2-1.8c-0.187-0.187-0.187-0.491,0-0.678c0.187-0.187,0.491-0.187,0.678,0c0.65,0.65,1.93,1.078,3.522,1.078s2.872-0.428,3.522-1.078c0.187-0.187,0.491-0.187,0.678,0C17.587,16.909,17.587,17.213,17.4,17.4z M16.2,15c-0.662,0-1.2-0.538-1.2-1.2s0.538-1.2,1.2-1.2s1.2,0.538,1.2,1.2S16.862,15,16.2,15z"/>',
       external: '<line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline>'
     };
     
@@ -60,6 +62,7 @@ class Sidebar {
     
     const onlineLinks = [
       { href: 'https://github.com/karakayautku4', label: 'GitHub', icon: 'github' },
+      { href: 'https://roadmap.sh/u/karakayautku4', label: 'Roadmap.sh', icon: 'roadmap' },
       { href: 'https://tryhackme.com/p/karakayautku4', label: 'TryHackMe', icon: 'tryhackme' },
       { href: 'https://www.hackerrank.com/karakayautku4', label: 'HackerRank', icon: 'hackerrank' }
     ];
@@ -67,7 +70,8 @@ class Sidebar {
     const socialLinks = [
       { href: 'https://linkedin.com/in/karakayautku4', label: 'LinkedIn', icon: 'linkedin' },
       { href: 'https://x.com/karakayautku4', label: 'X', icon: 'x' },
-      { href: 'https://instagram.com/karakayautku4', label: 'Instagram', icon: 'instagram' }
+      { href: 'https://instagram.com/karakayautku4', label: 'Instagram', icon: 'instagram' },
+      { href: 'https://www.reddit.com/user/karakayautku4/', label: 'Reddit', icon: 'reddit' }
     ];
     
     return `
