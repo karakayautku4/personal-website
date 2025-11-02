@@ -59,7 +59,7 @@ body.with-secondary-sidebar {
 
 /* Hero Section */
 .hero {
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
 }
 
 .hero p {
@@ -88,15 +88,26 @@ body.with-secondary-sidebar {
 /* Cards Grid */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 0;
+  align-items: stretch;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 768px) {
   .cards {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+  
+  .card {
+    min-height: 85px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    gap: 8px;
   }
 }
 
