@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Workspace | karakayautku4</title>
-  <link rel="canonical" href="https://karakayautku4.github.io/personal-website/pages/workspace.html">
-  <meta property="og:title" content="Workspace | Utku Karakaya">
-  <meta property="og:description" content="My workspace equipment and setup">
+  <title>Bookmarks | karakayautku4</title>
+  <link rel="canonical" href="https://karakayautku4.github.io/personal-website/pages/bookmarks.html">
+  <meta property="og:title" content="Bookmarks | Utku Karakaya">
+  <meta property="og:description" content="My favorite websites and resources">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://karakayautku4.github.io/personal-website/pages/workspace.html">
+  <meta property="og:url" content="https://karakayautku4.github.io/personal-website/pages/bookmarks.html">
   <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0d1117">
-  <meta name="description" content="Utku Karakaya's workspace, tools, and setup." />
+  <meta name="description" content="Utku Karakaya's favorite websites, articles, tools, and resources." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -20,18 +20,18 @@
   
   <link rel="icon" href="https://karakayautku4.github.io/personal-website/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="bookmarks-page">
   <header class="site-header"></header>
 
   <main class="main-content">
     <div class="container">
       <section class="section">
-        <h1>Workspace</h1>
-        <p class="text-muted">The equipment and tools I use daily</p>
+        <h1>Bookmarks</h1>
+        <p class="text-muted">Websites, articles, and resources I find inspiring and useful</p>
       </section>
 
       <section class="section">
-        <div class="workspace-grid" id="workspace-grid">
+        <div class="workspace-grid bookmarks-grid" id="bookmarks-grid">
         </div>
       </section>
     </div>
@@ -39,14 +39,13 @@
 
   <script src="../assets/js/utils.js"></script>
   <script src="../assets/js/nav.js"></script>
-  <script src="../assets/js/workspace-data.js"></script>
+  <script src="../assets/js/bookmarks-data.js"></script>
   <script src="../assets/js/sidebar.js"></script>
-  <script src="../assets/js/workspace-3d.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('workspace-grid');
+      const grid = document.getElementById('bookmarks-grid');
       if (grid) {
-        grid.innerHTML = generateWorkspaceGrid();
+        grid.innerHTML = generateBookmarksGrid();
       }
     });
   </script>

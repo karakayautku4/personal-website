@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Workspace | karakayautku4</title>
-  <link rel="canonical" href="https://karakayautku4.github.io/personal-website/pages/workspace.html">
-  <meta property="og:title" content="Workspace | Utku Karakaya">
-  <meta property="og:description" content="My workspace equipment and setup">
+  <title>Hobbies | karakayautku4</title>
+  <link rel="canonical" href="https://karakayautku4.github.io/personal-website/pages/hobbies.html">
+  <meta property="og:title" content="Hobbies | Utku Karakaya">
+  <meta property="og:description" content="My hobbies and collections">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://karakayautku4.github.io/personal-website/pages/workspace.html">
+  <meta property="og:url" content="https://karakayautku4.github.io/personal-website/pages/hobbies.html">
   <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0d1117">
-  <meta name="description" content="Utku Karakaya's workspace, tools, and setup." />
+  <meta name="description" content="Utku Karakaya's hobbies, interests, and collections." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -20,33 +20,29 @@
   
   <link rel="icon" href="https://karakayautku4.github.io/personal-website/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="hobbies-page">
   <header class="site-header"></header>
 
   <main class="main-content">
     <div class="container">
       <section class="section">
-        <h1>Workspace</h1>
-        <p class="text-muted">The equipment and tools I use daily</p>
+        <h1>Hobbies</h1>
       </section>
 
-      <section class="section">
-        <div class="workspace-grid" id="workspace-grid">
-        </div>
-      </section>
+      <div id="hobbies-content">
+      </div>
     </div>
   </main>
 
   <script src="../assets/js/utils.js"></script>
   <script src="../assets/js/nav.js"></script>
-  <script src="../assets/js/workspace-data.js"></script>
+  <script src="../assets/js/hobbies-data.js"></script>
   <script src="../assets/js/sidebar.js"></script>
-  <script src="../assets/js/workspace-3d.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('workspace-grid');
-      if (grid) {
-        grid.innerHTML = generateWorkspaceGrid();
+      const content = document.getElementById('hobbies-content');
+      if (content) {
+        content.innerHTML = generateHobbiesSections();
       }
     });
   </script>

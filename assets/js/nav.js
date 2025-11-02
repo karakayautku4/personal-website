@@ -84,9 +84,6 @@ class Navigation {
       }
     });
     
-    // Handle CV download confirmation
-    this.handleCVDownload();
-    
     // Close on nav link click (mobile)
     if (this.nav) {
       const links = this.nav.querySelectorAll('a:not([data-cv-download])');
@@ -101,87 +98,6 @@ class Navigation {
     
     // Handle window resize
     window.addEventListener('resize', () => this.handleResize());
-  }
-  
-  handleCVDownload() {
-    const cvLinks = document.querySelectorAll('a[data-cv-download]');
-    cvLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Create custom modal
-        const modal = document.createElement('div');
-        modal.className = 'cv-modal';
-        modal.innerHTML = `
-          <div class="cv-modal-overlay"></div>
-          <div class="cv-modal-content">
-            <div class="cv-modal-header">
-              <h3>Download CV</h3>
-              <button class="cv-modal-close" aria-label="Close">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
-            <div class="cv-modal-body">
-              <p>Would you like to download my CV?</p>
-            </div>
-            <div class="cv-modal-footer">
-              <button class="cv-modal-btn cv-modal-cancel">Cancel</button>
-              <button class="cv-modal-btn cv-modal-confirm">Download</button>
-            </div>
-          </div>
-        `;
-        
-        document.body.appendChild(modal);
-        document.body.style.overflow = 'hidden';
-        
-        // Animate in
-        requestAnimationFrame(() => {
-          modal.classList.add('active');
-        });
-        
-        const closeModal = () => {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-          setTimeout(() => {
-            document.body.removeChild(modal);
-          }, 200);
-        };
-        
-        // Handle close
-        modal.querySelector('.cv-modal-close').addEventListener('click', closeModal);
-        modal.querySelector('.cv-modal-cancel').addEventListener('click', closeModal);
-        modal.querySelector('.cv-modal-overlay').addEventListener('click', closeModal);
-        
-        // Handle download
-        modal.querySelector('.cv-modal-confirm').addEventListener('click', () => {
-          const url = link.getAttribute('href');
-          const tempLink = document.createElement('a');
-          tempLink.href = url;
-          tempLink.download = url.split('/').pop();
-          document.body.appendChild(tempLink);
-          tempLink.click();
-          document.body.removeChild(tempLink);
-          closeModal();
-        });
-        
-        // Handle escape key
-        const handleEscape = (e) => {
-          if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', handleEscape);
-          }
-        };
-        document.addEventListener('keydown', handleEscape);
-        
-        // Close mobile nav if open
-        if (window.innerWidth <= 768 && this.isOpen) {
-          this.close();
-        }
-      });
-    });
   }
   
   toggle() {

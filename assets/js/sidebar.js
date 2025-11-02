@@ -9,7 +9,8 @@ class Sidebar {
       home: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>',
       about: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>',
       projects: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>',
-      interests: '<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>',
+      hobbies: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+      bookmarks: '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>',
       workspace: '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>',
       cv: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>',
       github: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>',
@@ -38,14 +39,24 @@ class Sidebar {
     
     header.innerHTML = this.generateSidebar(currentPage, pathPrefix);
     
-    // Initialize secondary sidebar for workspace and projects pages
+    // Setup CV download modal after sidebar is rendered
+    this.setupCVModal();
+    
+    // Initialize secondary sidebar for workspace, projects, hobbies, and bookmarks pages
     const projectPages = ['projects.html', 'pythonleague.html'];
     
     if (currentPage === 'workspace.html') {
       this.initSecondarySidebar('workspace');
+    } else if (currentPage === 'hobbies.html') {
+      this.initSecondarySidebar('hobbies');
+    } else if (currentPage === 'bookmarks.html') {
+      this.initSecondarySidebar('bookmarks');
     } else if (projectPages.includes(currentPage)) {
       this.initSecondarySidebar('projects');
     }
+    
+    // Setup smooth scroll for hash links
+    this.setupSmoothScroll();
   }
   
   createSVG(iconPath, size = 16) {
@@ -58,6 +69,11 @@ class Sidebar {
       { href: 'about.html', label: 'About', icon: 'about' },
       { href: 'projects.html', label: 'Projects', icon: 'projects' },
       { href: 'workspace.html', label: 'Workspace', icon: 'workspace' }
+    ];
+    
+    const otherItems = [
+      { href: 'hobbies.html', label: 'Hobbies', icon: 'hobbies' },
+      { href: 'bookmarks.html', label: 'Bookmarks', icon: 'bookmarks' }
     ];
     
     const onlineLinks = [
@@ -101,6 +117,18 @@ class Sidebar {
         ${this.createSVG(this.icons.cv)}
         CV
       </a>
+      <h3 class="sidebar-title">Other</h3>
+      <div class="social-links">
+        ${otherItems.map(item => {
+          const isActive = currentPage === item.href;
+          const href = pathPrefix ? `${pathPrefix}pages/${item.href}` : `pages/${item.href}`;
+          return `
+        <a href="${href}"${isActive ? ' aria-current="page"' : ''}>
+          ${this.createSVG(this.icons[item.icon])}
+          <span>${item.label}</span>
+        </a>`;
+        }).join('')}
+      </div>
       <h3 class="sidebar-title">Online</h3>
       <div class="social-links">
         ${onlineLinks.map(item => `
@@ -141,16 +169,34 @@ class Sidebar {
   
   getSecondaryMenuData(pageType) {
     if (pageType === 'workspace') {
+      // Use centralized workspace data if available
+      if (typeof getWorkspaceSidebarData === 'function') {
+        return getWorkspaceSidebarData();
+      }
+      // Fallback to empty data
       return {
         title: 'Workspace',
-        sections: [
-          {
-            heading: 'Hardware',
-            links: [
-              { href: 'https://www.apple.com/macbook-air/', label: 'Apple MacBook Air', external: true }
-            ]
-          }
-        ]
+        sections: []
+      };
+    } else if (pageType === 'hobbies') {
+      // Use centralized hobbies data if available
+      if (typeof getHobbiesSidebarData === 'function') {
+        return getHobbiesSidebarData();
+      }
+      // Fallback to empty data
+      return {
+        title: 'Hobbies',
+        sections: []
+      };
+    } else if (pageType === 'bookmarks') {
+      // Use centralized bookmarks data if available
+      if (typeof getBookmarksSidebarData === 'function') {
+        return getBookmarksSidebarData();
+      }
+      // Fallback to empty data
+      return {
+        title: 'Bookmarks',
+        sections: []
       };
     } else if (pageType === 'projects') {
       return {
@@ -233,6 +279,111 @@ class Sidebar {
     } else {
       nav.appendChild(mobileSecondaryMenu);
     }
+  }
+  
+  setupSmoothScroll() {
+    // Handle smooth scrolling for hash links in secondary sidebar
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('a[href^="#"]');
+      if (target && target.getAttribute('href').startsWith('#')) {
+        const href = target.getAttribute('href');
+        if (href === '#coming-soon') return; // Skip coming soon links
+        
+        e.preventDefault();
+        const elementId = href.substring(1);
+        const element = document.getElementById(elementId);
+        
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+          
+          // Add visual feedback
+          element.style.transition = 'transform 0.3s ease';
+          element.style.transform = 'scale(1.02)';
+          setTimeout(() => {
+            element.style.transform = 'scale(1)';
+          }, 300);
+        }
+      }
+    });
+  }
+  
+  setupCVModal() {
+    const cvLink = document.querySelector('a[data-cv-download]');
+    if (!cvLink) return;
+    
+    cvLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Create custom modal
+      const modal = document.createElement('div');
+      modal.className = 'cv-modal';
+      modal.innerHTML = `
+        <div class="cv-modal-overlay"></div>
+        <div class="cv-modal-content">
+          <div class="cv-modal-header">
+            <h3>Download CV</h3>
+            <button class="cv-modal-close" aria-label="Close">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="cv-modal-body">
+            <p>Would you like to download my CV?</p>
+          </div>
+          <div class="cv-modal-footer">
+            <button class="cv-modal-btn cv-modal-cancel">Cancel</button>
+            <button class="cv-modal-btn cv-modal-confirm">Download</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+      
+      // Animate in
+      requestAnimationFrame(() => {
+        modal.classList.add('active');
+      });
+      
+      const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          document.body.removeChild(modal);
+        }, 200);
+      };
+      
+      // Handle close
+      modal.querySelector('.cv-modal-close').addEventListener('click', closeModal);
+      modal.querySelector('.cv-modal-cancel').addEventListener('click', closeModal);
+      modal.querySelector('.cv-modal-overlay').addEventListener('click', closeModal);
+      
+      // Handle download
+      modal.querySelector('.cv-modal-confirm').addEventListener('click', () => {
+        const url = cvLink.getAttribute('href');
+        const tempLink = document.createElement('a');
+        tempLink.href = url;
+        tempLink.download = url.split('/').pop();
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+        closeModal();
+      });
+      
+      // Handle escape key
+      const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          document.removeEventListener('keydown', handleEscape);
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+    });
   }
 }
 
