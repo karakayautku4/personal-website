@@ -11,12 +11,6 @@ body.with-secondary-sidebar {
   margin-left: 480px;
 }
 
-@media (max-width: 1200px) {
-  body.with-secondary-sidebar {
-    margin-left: 480px;
-  }
-}
-
 @media (max-width: 768px) {
   body {
     margin-left: 0;
@@ -36,24 +30,30 @@ body.with-secondary-sidebar {
 .container {
   max-width: 860px;
   margin: 0 auto;
-  padding: 80px var(--spacing-xl);
-  min-height: calc(100vh - 160px);
+  padding: 40px var(--spacing-xl) 40px;
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Homepage centering */
+.home-page .container {
   justify-content: center;
+  min-height: calc(100vh - 160px);
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 100px var(--spacing-lg) 60px var(--spacing-lg);
-    min-height: calc(100vh - 160px);
+    padding: 60px var(--spacing-lg) 40px var(--spacing-lg);
+    min-height: calc(100vh - 100px);
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 90px var(--spacing-md) 50px var(--spacing-md);
-    min-height: calc(100vh - 140px);
+    padding: 60px var(--spacing-md) 40px var(--spacing-md);
+    min-height: calc(100vh - 100px);
   }
 }
 
@@ -75,10 +75,6 @@ body.with-secondary-sidebar {
 }
 
 @media (max-width: 480px) {
-  .hero {
-    margin-bottom: var(--spacing-xl);
-  }
-  
   .hero p {
     font-size: 0.9rem;
     line-height: 1.65;
@@ -108,11 +104,6 @@ body.with-secondary-sidebar {
 @media (max-width: 480px) {
   .cards {
     gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cards {
     margin-top: 16px;
   }
 }
@@ -223,6 +214,26 @@ body.with-secondary-sidebar {
 .prose li {
   margin-bottom: var(--spacing-sm);
   line-height: 1.6;
+}
+
+/* Education List */
+.education-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.education-list li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.edu-logo {
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: inline-block;
 }
 
 /* Empty State */
