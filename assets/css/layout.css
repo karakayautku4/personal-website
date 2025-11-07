@@ -48,12 +48,20 @@ body.with-secondary-sidebar {
     padding: 60px var(--spacing-lg) 40px var(--spacing-lg);
     min-height: calc(100vh - 100px);
   }
+  
+  .home-page .container {
+    padding: 60px var(--spacing-lg) 40px var(--spacing-lg);
+  }
 }
 
 @media (max-width: 480px) {
   .container {
     padding: 60px var(--spacing-md) 40px var(--spacing-md);
     min-height: calc(100vh - 100px);
+  }
+  
+  .home-page .container {
+    padding: 60px var(--spacing-md) 40px var(--spacing-md);
   }
 }
 
