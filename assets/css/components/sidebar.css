@@ -191,7 +191,7 @@
   display: flex;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .secondary-sidebar {
     display: none !important;
   }
@@ -287,6 +287,14 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.mobile-secondary-heading .count-badge {
+  flex-shrink: 0;
 }
 
 .mobile-secondary-links {

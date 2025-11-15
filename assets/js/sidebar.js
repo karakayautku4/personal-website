@@ -267,7 +267,7 @@ class Sidebar {
       <h3 class="sidebar-title">${data.title}</h3>
       ${data.sections.map(section => `
         <div class="mobile-secondary-section">
-          <p class="mobile-secondary-heading">${section.heading}</p>
+          <div class="mobile-secondary-heading">${section.heading}</div>
           <div class="mobile-secondary-links">
             ${section.links.map(link => `
               <a href="${link.href}"${link.external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${link.label}</a>

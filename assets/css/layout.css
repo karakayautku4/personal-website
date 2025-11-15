@@ -11,6 +11,12 @@ body.with-secondary-sidebar {
   margin-left: 480px;
 }
 
+@media (max-width: 1200px) {
+  body.with-secondary-sidebar {
+    margin-left: 240px;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     margin-left: 0;
@@ -244,23 +250,5 @@ body.with-secondary-sidebar {
   display: inline-block;
 }
 
-/* Empty State */
-.empty-state {
-  position: fixed;
-  left: 480px;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-@media (max-width: 1200px) {
-  .empty-state {
-    left: 240px;
-  }
-}
-
-@media (max-width: 768px) {
-  .empty-state {
-    left: 0;
   }
 }
