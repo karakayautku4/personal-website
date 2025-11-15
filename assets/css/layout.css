@@ -45,12 +45,12 @@ body.with-secondary-sidebar {
 
 @media (max-width: 768px) {
   .container {
-    padding: 60px var(--spacing-lg) 40px var(--spacing-lg);
+    padding: 80px var(--spacing-lg) 40px var(--spacing-lg);
     min-height: calc(100vh - 100px);
   }
   
   .home-page .container {
-    padding: 60px var(--spacing-lg) 40px var(--spacing-lg);
+    padding: 80px var(--spacing-lg) 40px var(--spacing-lg);
   }
 }
 

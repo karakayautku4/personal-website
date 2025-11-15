@@ -86,7 +86,7 @@ const WORKSPACE_DATA = {
       name: 'Apple Magic Keyboard',
       category: 'Keyboard',
       details: 'Black',
-      url: 'https://www.apple.com/shop/product/MK2C3LL/A/magic-keyboard-us-english-black-keys',
+      url: 'https://www.apple.com/shop/product/MXK83LL/A/magic-keyboard-with-touch-id-and-numeric-keypad-for-mac-models-with-apple-silicon-usb-c-us-english-black-keys',
       image: null,
       isHero: false,
       gridSize: 'small'
